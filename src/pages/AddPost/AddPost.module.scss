@@ -1,0 +1,34 @@
+.title {
+    input {
+      font-size: 42px;
+      font-weight: 900;
+    }
+  
+    div {
+      &:before,
+      &:after {
+        display: none;
+      }
+    }
+  }
+  
+  .tags {
+    margin: 15px 0;
+  }
+  
+  .buttons {
+    display: flex;
+  
+    button {
+      margin-right: 15px;
+    }
+  }
+  
+  .common{
+    padding: 30;
+    background-color: #fff;
+    padding: 15px;
+    border: 1px solid #dedede;
+  }
+  
+  
