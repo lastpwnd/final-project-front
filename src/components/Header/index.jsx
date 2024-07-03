@@ -6,7 +6,7 @@ import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { isAuthSelected, logout } from "../../redux/slices/auth"
 import { UserInfo } from "../UserInfo"
-
+import CachedSharpIcon from '@mui/icons-material/CachedSharp';
 
 export const Header = () => {
 
@@ -23,8 +23,8 @@ export const Header = () => {
       <Container maxWidth="lg">
         <div className={styles.inner}>
           
-          <Link className={styles.logo} to="/">
-            <div>Main</div>
+          <Link to="/">
+            <CachedSharpIcon fontSize="large" color="error" />
           </Link>
           { isAuth ? <UserInfo avatarURL={userData.avatarURL} user={userData.name} /> 
                    : <></>

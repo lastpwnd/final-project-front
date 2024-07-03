@@ -14,16 +14,17 @@ export const Registration = () => {
 
   const dispatch  = useDispatch()
   const isAuth = useSelector(isAuthSelected)
-
-  const { register, handleSubmit, formState:{ errors, isValid } } = useForm({
+  
+  const { register, handleSubmit, watch, formState:{ errors, isValid } } = useForm({
     defaultValues: {
       name: "John Doe",
       email: "johndoe@mail.com",
       password: "12345",
+      password2: "1234",
       avatarURL: "https://99px.ru/sstorage/1/2010/12/image_11312101343033420722.jpeg"
     }
   })
-
+  const watchedPass = watch("password")
   const onSubmit = async (values) => {
    
       const data = await dispatch(fetchRegister(values))
@@ -68,15 +69,29 @@ export const Registration = () => {
             error={Boolean(errors.email?.message)}
             helperText={errors.email?.message}
             {...register('email', { required: "Provide valid email" })}
-            fullWidth 
+            fullWidth
           />
+          
           <TextField 
             className={styles.field} 
             label="password" 
             type="password"
             error={Boolean(errors.password?.message)}
             helperText={errors.password?.message}
-            {...register('password', { required: "Enter password" })}
+            {...register('password', { required: "Type password (Min 5 letters)" })}
+            fullWidth 
+          />
+          <TextField 
+            className={styles.field} 
+            label="repeat password" 
+            type="password"
+            error={Boolean(errors.password?.message)}
+            helperText={errors.password?.message}
+            {...register('password2', { required: "Type password again", validate: (value)=>{
+              if(watchedPass !== value){
+                return "Passwords do not match!"
+              }
+            }})}
             fullWidth 
           />
           <TextField 
@@ -85,7 +100,7 @@ export const Registration = () => {
             type="url"
             error={Boolean(errors.avatarURL?.message)}
             helperText={errors.avatarURL?.message}
-            {...register('avatarURL', { required: "Input valid link" })}
+            {...register('avatarURL', { required: true })}
             fullWidth 
           />
             <Button disabled={!isValid} type="submit" size="large" variant="contained" fullWidth>Register</Button>

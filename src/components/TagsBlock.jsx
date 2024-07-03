@@ -7,7 +7,7 @@ import TagIcon from "@mui/icons-material/Tag";
 import ListItemText from "@mui/material/ListItemText";
 import Skeleton from "@mui/material/Skeleton";
 import { SideBlock } from "./SideBlock";
-
+import { Link } from "react-router-dom";
 
 // clearArray = (items) =>
 // {
@@ -23,10 +23,10 @@ export const TagsBlock = ({ items, isLoading = true }) => {
     <SideBlock title="Tags">
       <List>
         {(isLoading ? [...Array(5)] : clearArray(items)).map((name, i) => (
-          <a
+          <Link
             key={i}
             style={{ textDecoration: "none", color: "black" }}
-            href={`/posts/tags/${name}`}
+            to={`/posts/tags/${name}`}
           >
             <ListItem key={i} disablePadding>
               <ListItemButton>
@@ -40,7 +40,7 @@ export const TagsBlock = ({ items, isLoading = true }) => {
                 )}
               </ListItemButton>
             </ListItem>
-          </a>
+          </Link>
         ))}
       </List>
     </SideBlock>

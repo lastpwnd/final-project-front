@@ -5,14 +5,14 @@ import { Post } from "../components/Post";
 import { TagsBlock } from "../components/TagsBlock";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts, fetchPostsByTags, fetchTags } from "../redux/slices/posts";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 
 export const Home = ({ byTag }) => {
 
   const { tag } = useParams()
   const dispatch  = useDispatch()
-  const [isSort, setIsSort] = useState(1)
+  const [isSort, setIsSort] = useState(-1)
   const userData = useSelector( (state) => state.auth.data)
   const { posts, tags  } = useSelector( (state) => state.posts)
 
@@ -43,7 +43,7 @@ export const Home = ({ byTag }) => {
 
   return (
     <>
-    {byTag ? <a href="/"><Button variant="contained" sx={{ my: 2 }} > Back to Main </Button></a> :<Button onClick={sortChange} variant="contained" sx={{ my: 2 }}> {isSort === -1 ? "Latest first" : "Older first"} </Button>  }
+    {byTag ? <Link to="/"><Button variant="contained" sx={{ my: 2 }} > Back to Main </Button></Link> :<Button onClick={sortChange} variant="contained" sx={{ my: 2 }}> {isSort === -1 ? "Latest first" : "Older first"} </Button>  }
       <Grid container spacing={4}>
         <Grid xs={8} item>
           {(isPostsLoading ? [...Array(3)] : posts.items)
