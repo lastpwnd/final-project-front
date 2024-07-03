@@ -17,11 +17,11 @@ export const Registration = () => {
   
   const { register, handleSubmit, watch, formState:{ errors, isValid } } = useForm({
     defaultValues: {
-      name: "John Doe",
-      email: "johndoe@mail.com",
-      password: "12345",
-      password2: "1234",
-      avatarURL: "https://99px.ru/sstorage/1/2010/12/image_11312101343033420722.jpeg"
+      name: "",
+      email: "",
+      password: "",
+      password2: "",
+      avatarURL: ""
     }
   })
   const watchedPass = watch("password")
