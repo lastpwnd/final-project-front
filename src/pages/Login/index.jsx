@@ -23,7 +23,7 @@ export const Login = () => {
   const onSubmit = async (values) => {
     const data = await dispatch(fetchAuth(values))
     if (!data.payload) {
-      alert("Registration error!")
+      alert("Error occurred during logging...")
     }
     if (data.payload.token) {
       window.localStorage.setItem('token', data.payload.token)
