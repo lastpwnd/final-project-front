@@ -40,7 +40,6 @@ export const Home = ({ byTag }) => {
   }
 
  
-
   return (
     <>
     {byTag ? <Link to="/"><Button variant="contained" sx={{ my: 2 }} > Back to Main </Button></Link> :<Button onClick={sortChange} variant="contained" sx={{ my: 2 }}> {isSort === -1 ? "Latest first" : "Older first"} </Button>  }
@@ -56,7 +55,7 @@ export const Home = ({ byTag }) => {
                   title={obj.title}
                   imageUrl={obj.imageURL}
                   user={obj.user}
-                  createdAt={obj.createdAt}
+                  createdAt={obj.updatedAt}
                   viewsCount={obj.viewsCounter}
                   tags={obj.tags}
                   text={obj.text}

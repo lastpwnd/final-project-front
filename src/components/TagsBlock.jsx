@@ -22,7 +22,7 @@ export const TagsBlock = ({ items, isLoading = true }) => {
   return (
     <SideBlock title="Tags">
       <List>
-        {(isLoading ? [...Array(5)] : clearArray(items)).map((name, i) => (
+        {(isLoading ? [...Array(10)] : clearArray(items)).map((name, i) => (
           <Link
             key={i}
             style={{ textDecoration: "none", color: "black" }}

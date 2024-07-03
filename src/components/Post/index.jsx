@@ -21,13 +21,29 @@ export const Post = ({
   isFullPost,
   isLoading,
   isEditable,
+  createdAt
 }) => {
   const dispatch = useDispatch()
   if (isLoading) {
     return <PostSkeleton />
   }
 
- 
+  // Instead, should have added normal dates to schemas, but for now...
+  const dateTransform = (mongoDate) => {
+    let date = new Date(mongoDate)
+    let d = date.getDate()
+    let m = date.getMonth()+1
+    let y = date.getFullYear()
+    let hs = date.getHours()
+    if ( hs < 10) {
+      hs = "0" + hs
+    }
+    let ms = date.getMinutes()
+    if ( ms < 10) {
+      ms = "0" + ms
+    }
+    return `Posted/updated: ${m}/${d}/${y} ${hs}:${ms}`
+  }
 
   const removeOnClick = () => {
     if(window.confirm("You're trying to delete post, proceed?")) {
@@ -48,7 +64,7 @@ export const Post = ({
         </div>
       )}
       <div className={styles.wrapper}>
-        <UserInfo user={user.name} avatarURL={user.avatarURL} additionalText={user.createdAt} />
+        <UserInfo user={user.name} avatarURL={user.avatarURL} additionalText={dateTransform(createdAt)} />
         <div className={styles.indention}>
           <h2
             className={clsx(styles.title, { [styles.titleFull]: isFullPost })}
